@@ -39,7 +39,7 @@ It would be better if you avoid using datasets with row names.
 ## Example of use
 Simply load a .csv file, select the type of chart to be plotted, group size and variable to be used. By default, the *mtcars dataset* is used.
 
-Check [this link]() to use the app.
+Check [this link](https://michy-apps.shinyapps.io/control_charts/) to use the app.
 
 ## License
 See the LICENSE file for license rights and limitations (GPL 3.0).
