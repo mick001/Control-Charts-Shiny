@@ -34,6 +34,8 @@ For each variable, the measurements are assumed to be consecutive and **not** gr
     .
     .
 
+It would be better if you avoid using datasets with row names.
+
 ## Example of use
 Simply load a .csv file, select the type of chart to be plotted, group size and variable to be used. By default, the *mtcars dataset* is used.
 
