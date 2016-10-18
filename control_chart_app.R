@@ -33,7 +33,8 @@ ui <- fluidPage(
             # Header1
             tags$h1("Control chart utility"),
             # Paragraph 1
-            p("Upload your data in .csv format and plot the selected variable in a control chart."),
+            p("Upload your data in .csv format and plot the selected variable in a control chart. For more information on the project and instructions, please check the ",
+              a("project page", href = "https://github.com/mick001/control_charts_shiny"), "."),
     
             # Input file
             # Default size limit is 5 MB

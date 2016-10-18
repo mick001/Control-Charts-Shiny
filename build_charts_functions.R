@@ -1,68 +1,4 @@
 ################################################################################
-#' r chart function
-#' 
-#' This function builds a s control chart
-#'
-#' @param data a dataframe object
-#' @param group
-#' @param n_sigma
-#' @importFrom dplyr %>% mutate group_by summarise
-#' @return a dplyr dataframe object
-#' 
-#' @export
-#'
-
-r_ <- function(data, group_size, n_sigma)
-{
-    # Number of samples
-    samples <- dim(data)[1]
-    # Group data and summarise
-    out <- data %>%
-        mutate(group = rep(1:samples, each = group_size, length = samples)) %>%
-        group_by(group) %>%
-        summarise(data_points = diff_range(y))
-    
-    # Build control chart
-    out <- out %>% mutate(x = row_number(),
-                          center = mean(data_points),
-                          lcl = center - n_sigma * (center * constant(group_size, "d3")) / (constant(group_size, "d2")),
-                          ucl = center + n_sigma * (center * constant(group_size, "d3")) / (constant(group_size, "d2")) )
-    return(out)
-}
-
-################################################################################
-#' S chart function
-#' 
-#' This function builds a s control chart
-#'
-#' @param data a dataframe object
-#' @param group
-#' @param n_sigma
-#' @importFrom dplyr %>% mutate group_by summarise
-#' @return a dplyr dataframe object
-#' 
-#' @export
-#'
-
-s_ <- function(data, group_size, n_sigma)
-{
-    # Number of samples
-    samples <- dim(data)[1]
-    # Group data and summarise
-    out <- data %>%
-        mutate(group = rep(1:samples, each = group_size, length = samples)) %>%
-        group_by(group) %>%
-        summarise(data_points = sd(y))
-    
-    # Build control chart
-    out <- out %>% mutate(x = row_number(),
-                          center = mean(data_points),
-                          lcl = center - n_sigma * (center * sqrt(1 - constant(group_size, "c4")**2) ) / (constant(group_size, "c4") ),
-                          ucl = center + n_sigma * (center * sqrt(1 - constant(group_size, "c4")**2) ) / (constant(group_size, "c4") ))
-    return(out)
-}
-
-################################################################################
 #' xbar-s chart function
 #' 
 #' This function builds a xbar-s control chart
@@ -120,6 +56,70 @@ xbar_r <- function(data, group_size, n_sigma)
                           center = mean(data_points),
                           lcl = center - n_sigma * mean(shape) / (constant(group_size, "d2") * sqrt(group_size)),
                           ucl = center + n_sigma * mean(shape) / (constant(group_size, "d2") * sqrt(group_size)) )
+    return(out)
+}
+
+################################################################################
+#' S chart function
+#' 
+#' This function builds a s control chart
+#'
+#' @param data a dataframe object
+#' @param group
+#' @param n_sigma
+#' @importFrom dplyr %>% mutate group_by summarise
+#' @return a dplyr dataframe object
+#' 
+#' @export
+#'
+
+s_ <- function(data, group_size, n_sigma)
+{
+    # Number of samples
+    samples <- dim(data)[1]
+    # Group data and summarise
+    out <- data %>%
+        mutate(group = rep(1:samples, each = group_size, length = samples)) %>%
+        group_by(group) %>%
+        summarise(data_points = sd(y))
+    
+    # Build control chart
+    out <- out %>% mutate(x = row_number(),
+                          center = mean(data_points),
+                          lcl = center - n_sigma * (center * sqrt(1 - constant(group_size, "c4")**2) ) / (constant(group_size, "c4") ),
+                          ucl = center + n_sigma * (center * sqrt(1 - constant(group_size, "c4")**2) ) / (constant(group_size, "c4") ))
+    return(out)
+}
+
+################################################################################
+#' r chart function
+#' 
+#' This function builds a s control chart
+#'
+#' @param data a dataframe object
+#' @param group
+#' @param n_sigma
+#' @importFrom dplyr %>% mutate group_by summarise
+#' @return a dplyr dataframe object
+#' 
+#' @export
+#'
+
+r_ <- function(data, group_size, n_sigma)
+{
+    # Number of samples
+    samples <- dim(data)[1]
+    # Group data and summarise
+    out <- data %>%
+        mutate(group = rep(1:samples, each = group_size, length = samples)) %>%
+        group_by(group) %>%
+        summarise(data_points = diff_range(y))
+    
+    # Build control chart
+    out <- out %>% mutate(x = row_number(),
+                          center = mean(data_points),
+                          lcl = center - n_sigma * (center * constant(group_size, "d3")) / (constant(group_size, "d2")),
+                          ucl = center + n_sigma * (center * constant(group_size, "d3")) / (constant(group_size, "d2")) )
     return(out)
 }
 
