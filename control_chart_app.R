@@ -6,6 +6,7 @@ require(dplyr)
 # Load auxiliary functions (local and the chartconstant package which is not on CRAN)
 source("build_charts_functions.R", local = TRUE)
 source("plot_functions.R", local = TRUE)
+source("utils.R", local = TRUE)
 source("https://raw.githubusercontent.com/mick001/chartconstants/master/chartconstants/R/auxiliary_functions.R")
 source("https://raw.githubusercontent.com/mick001/chartconstants/master/chartconstants/R/constant_functions.R")
 source("https://raw.githubusercontent.com/mick001/chartconstants/master/chartconstants/R/main_function.R")
@@ -42,7 +43,7 @@ ui <- fluidPage(
             # Select chart type
             selectInput(inputId = "plot_type",
                         label = "Select the type of control chart:",
-                        choices = c("xbar_s", "s")),
+                        choices = c("xbar_s", "s", "xbar_r", "r")),
 
             # Select group size
             numericInput(inputId = "group",
@@ -135,7 +136,7 @@ server <- function(input, output)
                                    group = input$group,
                                    n_sigma = input$n_sigma)
             # Return plot
-        pl <- plot_chart(plot_data = plot_data, y)
+        pl <- plot_chart(plot_data = plot_data, plot_type = input$plot_type, var_name = y)
         # Print out plot
         print(pl)
     })

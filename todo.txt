@@ -1,0 +1,4 @@
+- Check if the whole package is working as it is supposed to.
+- Add charts for variables MR - I
+- Add charts c,p,np,u
+- Color points out of of control limits with red or another bright color
