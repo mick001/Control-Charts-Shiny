@@ -4,6 +4,12 @@ A Shiny app to plot control charts from a given .csv file. Depends also on a pac
 
 Please note this is a test app developed in a couple hours, if you spot any bug or encounter difficulties, please let me know.
 
+A short article describing the app is available at [The Beginner Programmer](http://firsttimeprogrammer.blogspot.it/2016/09/my-first-shiny-app-control-charts.html).
+
+Example of outcome control chart:
+
+![](https://lh3.googleusercontent.com/-QXWGJuypOoI/V-Y6jwk2qAI/AAAAAAAABu4/DT4CgvWL9Do/Image%2525201_thumb%25255B1%25255D.jpg?imgmax=800)
+
 ## Implemented charts
 Currently the following charts are available:
 
